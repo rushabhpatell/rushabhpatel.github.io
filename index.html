@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rushabh Patel — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #042C53;
+      --navy-mid: #185FA5;
+      --navy-light: #E6F1FB;
+      --accent: #378ADD;
+      --bg: #f9f9f8;
+      --surface: #ffffff;
+      --border: #e4e4e0;
+      --text-primary: #1a1a18;
+      --text-secondary: #5f5e5a;
+      --text-muted: #888780;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-primary); font-size: 15px; line-height: 1.7; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(249,249,248,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 2rem; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 15px; font-weight: 600; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-logo span { color: var(--navy-mid); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+    .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy-mid); margin-bottom: 0.5rem; }
+    .section-heading { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 2rem; color: var(--text-primary); }
+    #hero { padding: 6rem 0 5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+    .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); }
+    .badge.highlight { background: var(--navy-light); border-color: #b5d4f4; color: var(--navy-mid); }
+    .hero-title { font-size: 42px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 1.25rem; }
+    .hero-title em { font-style: normal; color: var(--navy-mid); }
+    .hero-sub { font-size: 15px; color: var(--text-secondary); max-width: 540px; margin-bottom: 2rem; line-height: 1.8; }
+    .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 10px 20px; border-radius: 8px; background: var(--navy-mid); color: #fff; border: none; cursor: pointer; text-decoration: none; transition: background 0.15s; }
+    .btn-primary:hover { background: var(--navy); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 10px 20px; border-radius: 8px; background: transparent; color: var(--text-primary); border: 1px solid var(--border); cursor: pointer; text-decoration: none; transition: background 0.15s, border-color 0.15s; }
+    .btn-outline:hover { background: var(--surface); border-color: #c0bfbb; }
+    .hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; min-width: 200px; text-align: center; }
+    .hero-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--navy-light); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 600; color: var(--navy-mid); margin: 0 auto 1rem; }
+    .hero-card-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .hero-card-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 1rem; }
+    .hero-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat-box { background: var(--bg); border-radius: 8px; padding: 0.6rem; text-align: center; }
+    .stat-num { font-size: 18px; font-weight: 600; color: var(--navy-mid); }
+    .stat-label { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+    .skill-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .skill-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--navy-light); display: flex; align-items: center; justify-content: center; color: var(--navy-mid); font-size: 16px; flex-shrink: 0; }
+    .skill-card-title { font-size: 13px; font-weight: 600; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag { font-size: 12px; padding: 3px 9px; border-radius: 5px; background: var(--bg); color: var(--text-secondary); border: 1px solid var(--border); }
+    .exp-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .exp-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; position: relative; }
+    .exp-card::before { content: ''; position: absolute; left: 0; top: 1.5rem; bottom: 1.5rem; width: 3px; background: var(--navy-mid); border-radius: 0 2px 2px 0; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; flex-wrap: wrap; gap: 6px; }
+    .exp-role { font-size: 15px; font-weight: 600; }
+    .exp-date { font-size: 12px; color: var(--text-muted); background: var(--bg); padding: 2px 8px; border-radius: 5px; border: 1px solid var(--border); white-space: nowrap; }
+    .exp-company { font-size: 13px; color: var(--navy-mid); font-weight: 500; margin-bottom: 1rem; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .exp-bullets li { font-size: 13px; color: var(--text-secondary); padding-left: 1.25rem; position: relative; line-height: 1.65; }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 12px; }
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .proj-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s, box-shadow 0.15s; }
+    .proj-card:hover { border-color: #b5d4f4; box-shadow: 0 4px 16px rgba(24,95,165,0.07); }
+    .proj-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--navy-light); display: flex; align-items: center; justify-content: center; color: var(--navy-mid); font-size: 20px; }
+    .proj-title { font-size: 14px; font-weight: 600; }
+    .proj-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .proj-tag { font-size: 11px; padding: 2px 8px; border-radius: 5px; background: var(--navy-light); color: var(--navy-mid); font-weight: 500; }
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .contact-intro { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-secondary); text-decoration: none; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); transition: border-color 0.15s, color 0.15s; }
+    .contact-link:hover { border-color: var(--accent); color: var(--navy-mid); }
+    .contact-link i { font-size: 18px; color: var(--navy-mid); }
+    .contact-cta { background: var(--navy-mid); border-radius: 14px; padding: 2rem; color: #fff; }
+    .contact-cta h3 { font-size: 18px; font-weight: 600; margin-bottom: 0.5rem; }
+    .contact-cta p { font-size: 13px; opacity: 0.8; line-height: 1.7; margin-bottom: 1.25rem; }
+    .btn-white { display: inline-flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; padding: 10px 18px; border-radius: 8px; background: #fff; color: var(--navy-mid); border: none; cursor: pointer; text-decoration: none; }
+    footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 12px; color: var(--text-muted); }
+    @media (max-width: 720px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .hero-title { font-size: 30px; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">Rushabh Patel<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badges">
+            <span class="badge highlight"><i class="ti ti-map-pin" style="font-size:12px"></i> Sacramento, CA</span>
+            <span class="badge">B.S. Computer Science — CSUS '26</span>
+            <span class="badge highlight"><i class="ti ti-circle-check" style="font-size:12px"></i> Open to opportunities</span>
+          </div>
+          <h1 class="hero-title">Full stack developer<br>&amp; <em>software engineer</em></h1>
+          <p class="hero-sub">Computer Science graduate from CSUS with a 3.7 GPA and hands-on experience designing production-grade, HIPAA-compliant web applications. Currently leading full stack development at Lattice Labs and providing enterprise IT support at the California Franchise Tax Board.</p>
+          <div class="cta-row">
+            <a href="#contact" class="btn-primary"><i class="ti ti-send" style="font-size:14px"></i> Get in touch</a>
+            <a href="#projects" class="btn-outline"><i class="ti ti-folder" style="font-size:14px"></i> View projects</a>
+          </div>
+        </div>
+        <div>
+          <div class="hero-card">
+            <div class="hero-avatar">RP</div>
+            <div class="hero-card-name">Rushabh Patel</div>
+            <div class="hero-card-title">Full Stack Developer</div>
+            <div class="hero-card-stats">
+              <div class="stat-box">
+                <div class="stat-num">8</div>
+                <div class="stat-label">Team size led</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">3.7</div>
+                <div class="stat-label">GPA</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">~90%</div>
+                <div class="stat-label">Query reduction</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">HIPAA</div>
+                <div class="stat-label">Compliant</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="about"></div>
+
+  <section id="skills">
+    <div class="container">
+      <p class="section-eyebrow">Skills</p>
+      <h2 class="section-heading">Technical expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="ti ti-code"></i></div>
+            <span class="skill-card-title">Languages</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C / C++</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">HTML / CSS</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="ti ti-layers"></i></div>
+            <span class="skill-card-title">Frameworks & Libraries</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">Maven</span>
+            <span class="skill-tag">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="ti ti-database"></i></div>
+            <span class="skill-card-title">Databases</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">SQL Server</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="ti ti-cloud"></i></div>
+            <span class="skill-card-title">Cloud & DevOps</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">AWS RDS</span>
+            <span class="skill-tag">AWS EC2</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Linux</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="ti ti-shield-lock"></i></div>
+            <span class="skill-card-title">Security & Compliance</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">HIPAA</span>
+            <span class="skill-tag">JWT Auth</span>
+            <span class="skill-tag">AES Encryption</span>
+            <span class="skill-tag">Argon2</span>
+            <span class="skill-tag">RBAC</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon"><i class="ti ti-bulb"></i></div>
+            <span class="skill-card-title">Concepts</span>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">OOP</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">Agile / Scrum</span>
+            <span class="skill-tag">Data Structures</span>
+            <span class="skill-tag">System Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <p class="section-eyebrow">Experience</p>
+      <h2 class="section-heading">Where I've worked</h2>
+      <div class="exp-list">
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-role">Lead Full Stack Developer</span>
+            <span class="exp-date">Oct 2025 – Present</span>
+          </div>
+          <p class="exp-company">Lattice Labs · Sacramento, CA</p>
+          <ul class="exp-bullets">
+            <li>Led development of a HIPAA-compliant EHR system for ALEMS Senior Care using React, Spring Boot, Maven, MySQL, and AWS — implementing RBAC and AES data encryption to protect patient health information</li>
+            <li>Reduced backend query volume by ~90% by refactoring N+1 query patterns into batched operations, and implemented JWT authentication and Argon2 password hashing to harden system security</li>
+            <li>Configured and deployed AWS RDS MySQL instances integrated with the Spring Boot application, diagnosing and resolving connectivity and authentication errors to ensure reliable cloud database availability</li>
+            <li>Coordinated delivery across 8 developers by assigning tasks in Jira, conducting pull request reviews, and maintaining direct communication with the client and faculty advisor to meet all milestones on schedule</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-role">IT Student Assistant</span>
+            <span class="exp-date">Mar 2023 – Present</span>
+          </div>
+          <p class="exp-company">California Franchise Tax Board · Sacramento, CA</p>
+          <ul class="exp-bullets">
+            <li>Provided Tier 1 and Tier 2 technical support for PC hardware and software issues via phone and email, escalating complex incidents to senior staff with full documentation</li>
+            <li>Utilized the CA Knowledge Management Database and CA Service Desk ticketing system to track, resolve, and document service requests, improving resolution consistency across the team</li>
+            <li>Coordinated retrieval, delivery, and setup of IT equipment across departments, maintaining accurate asset records and ensuring hardware availability for staff</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <p class="section-eyebrow">Projects</p>
+      <h2 class="section-heading">Things I've built</h2>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-icon"><i class="ti ti-heart-rate-monitor"></i></div>
+          <p class="proj-title">ALEMS EHR System</p>
+          <p class="proj-desc">A full-featured, HIPAA-compliant Electronic Health Records platform for ALEMS Senior Care. Built with React, Spring Boot, and AWS — featuring role-based access controls, AES data encryption, and JWT-secured APIs to protect sensitive patient health information.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">Spring Boot</span>
+            <span class="proj-tag">AWS RDS</span>
+            <span class="proj-tag">MySQL</span>
+            <span class="proj-tag">HIPAA</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-icon"><i class="ti ti-shield-lock"></i></div>
+          <p class="proj-title">Auth & Security Module</p>
+          <p class="proj-desc">Designed and implemented enterprise-grade authentication for the EHR platform — JWT tokens, AES data encryption, Argon2 password hashing, and a full RBAC permission system covering all clinical staff roles. Also resolved N+1 query issues, cutting query volume by ~90%.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">JWT</span>
+            <span class="proj-tag">AES Encryption</span>
+            <span class="proj-tag">Argon2</span>
+            <span class="proj-tag">RBAC</span>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-icon"><i class="ti ti-server"></i></div>
+          <p class="proj-title">AWS RDS Deployment</p>
+          <p class="proj-desc">Configured and deployed AWS RDS MySQL instances integrated with a Spring Boot backend, diagnosing and resolving cloud connectivity and authentication errors to maintain reliable database availability in production.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">AWS RDS</span>
+            <span class="proj-tag">AWS EC2</span>
+            <span class="proj-tag">Spring Boot</span>
+            <span class="proj-tag">MySQL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <p class="section-eyebrow">Contact</p>
+      <h2 class="section-heading">Let's connect</h2>
+      <div class="contact-wrapper">
+        <div>
+          <p class="contact-intro">I'm actively seeking full-time software engineering roles in California. Whether you have a position in mind or just want to talk tech, I'd love to hear from you.</p>
+          <div class="contact-links">
+            <a href="mailto:rushabhpatel109@gmail.com" class="contact-link">
+              <i class="ti ti-mail"></i> rushabhpatel109@gmail.com
+            </a>
+            <a href="tel:9168974959" class="contact-link">
+              <i class="ti ti-phone"></i> (916) 897-4959
+            </a>
+            <a href="https://www.linkedin.com/in/rushabh-patel109/" target="_blank" class="contact-link">
+              <i class="ti ti-brand-linkedin"></i> linkedin.com/in/rushabh-patel109
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="contact-cta">
+            <h3>Open to new roles</h3>
+            <p>Based in Sacramento, CA. Available for full-time software engineering positions, including California state agency and private tech roles.</p>
+            <a href="mailto:rushabhpatel109@gmail.com" class="btn-white">
+              <i class="ti ti-send" style="font-size:14px"></i> Send me a message
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Rushabh Patel · Sacramento, CA · rushabhpatel109@gmail.com</p>
+  </footer>
+
+</body>
+</html>
